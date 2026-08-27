@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PixellePilots — Genshin Impact Piloting Services</title>
+<meta name="description" content="PixellePilots offers Genshin Impact piloting services: exploration, world quests, archon quests, maintenance, and more. Get a live quote and order through Discord or PayPal.">
+<link rel="icon" href="assets/logo-transparent.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <img src="assets/logo-transparent.png" alt="PixellePilots logo" class="logo-mini">
+    <div class="header-title">PixellePilots</div>
+    <button class="icon-btn" onclick="toggleCartPanel()">
+      Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+  <nav class="section-nav">
+    <a href="#services">Services</a>
+    <a href="#notes">Important notes</a>
+    <a href="#terms">Terms</a>
+    <a href="#trust">Trust &amp; safety</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <img src="assets/logo-transparent.png" alt="PixellePilots" class="hero-logo">
+    <p class="tagline">Genshin Impact piloting, done with care</p>
+    <p class="stars-row">&#9733; &#9733; &#9733;</p>
+  </section>
+
+  <div class="currency-bar">
+    <span class="label">Show prices in:</span>
+    <button class="currency-btn active" data-cur="PHP" onclick="setCurrency('PHP')">PHP &#8369;</button>
+    <button class="currency-btn" data-cur="USD" onclick="setCurrency('USD')">USD $</button>
+    <button class="currency-btn" data-cur="EUR" onclick="setCurrency('EUR')">EUR &#8364;</button>
+  </div>
+
+  <section id="services">
+    <h2 class="section-title"><span class="roman">&#8226;</span>Services &amp; pricing</h2>
+    <div class="category-grid">
+
+      <div class="category-card" onclick="openModal('modalExploration'); renderExplorationModal();">
+        <span class="roman-num">I</span>
+        <h3>Exploration</h3>
+        <p>Region areas, bundles, Frost Moon, oculi &amp; offerings</p>
+      </div>
+
+      <div class="category-card" onclick="openModal('modalWorldQuests'); renderWorldQuestsModal();">
+        <span class="roman-num">II</span>
+        <h3>World Quests</h3>
+        <p>Every region's world quests, story quests &amp; hangouts</p>
+      </div>
+
+      <div class="category-card" onclick="openModal('modalArchon'); renderArchonModal();">
+        <span class="roman-num">III</span>
+        <h3>Archon Quests</h3>
+        <p>Mondstadt through Snezhnaya, act by act</p>
+      </div>
+
+      <div class="category-card" onclick="openModal('modalMaintenance'); renderMaintenanceModal();">
+        <span class="roman-num">IV</span>
+        <h3>Maintenance</h3>
+        <p>Daily, weekly, monthly &amp; patch-cycle care packages</p>
+      </div>
+
+      <div class="category-card" onclick="openModal('modalMisc'); renderMiscModal();">
+        <span class="roman-num">V</span>
+        <h3>Miscellaneous</h3>
+        <p>Primohunt, Spiral Abyss, fishing, materials &amp; more</p>
+      </div>
+
+      <div class="category-card" onclick="openModal('modalEvents'); renderEventsModal();">
+        <span class="roman-num">VI</span>
+        <h3>Events</h3>
+        <p>Current time-limited events</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="notes">
+    <h2 class="section-title">Important notes</h2>
+    <div class="info-card">
+      <ul>
+        <li>All services are done manually with care. <strong>Proof of start and completion will be provided</strong> via Discord, FB Messenger or Instagram DM.</li>
+        <li>Pricing may vary depending on your account's current progress. <strong>Additional fees may apply</strong> for rush orders or complex requests.</li>
+        <li><strong>An initial inspection is required</strong> before confirming the service. You may either send screenshots of your account or allow a quick login check. This happens in Discord DMs.</li>
+        <li>Vouches/feedback are not required, but are a huge help to our services.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="terms">
+    <h2 class="section-title">Terms &amp; conditions</h2>
+    <div class="info-card">
+      <ul>
+        <li>Payments must be made after confirmation of service and before starting, unless stated otherwise.</li>
+        <li>No refunds will be issued once the service has started.</li>
+        <li>Pixelle Piloting Services reserves the right to decline or cancel a service if necessary and possible.</li>
+        <li>Pixelle Piloting Services is not responsible for any issues caused by third-party access, prior account sharing, or external factors beyond control.</li>
+        <li>Only monetary payments are allowed — in-game currency or other credit forms will not be accepted.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="trust">
+    <h2 class="section-title">Trust &amp; safety</h2>
+    <div class="info-card">
+      <p>In the piloting community, we want to ensure your peace of mind — but of course, words alone aren't enough. That's what a <strong>Sticker Board</strong> is for: verification stickers are labels issued by a group's administration confirming that a pilot has met their criteria for legitimacy, helping prevent impersonation, fraud, or unauthorized access.</p>
+      <div class="trust-grid">
+        <img src="assets/sticker-board-cropped.png" alt="PixellePilots sticker board showing Callaia Australis verified pilot badge and Avlirier Pilots badge">
+        <div class="complaint-links">
+          <p style="margin-top:0;">If you have any <strong>major</strong> concerns — account issues, suspicious activity, or anything else — these community groups take complaints:</p>
+          <a href="https://www.facebook.com/avlirier.srvc/" target="_blank" rel="noopener">Avlirier Pilots &#8594;</a>
+          <a href="https://www.facebook.com/profile.php?id=61588177104521" target="_blank" rel="noopener">Callaia Australis Official &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <section id="contact">
+    <h2 class="section-title">Get a quote</h2>
+    <div class="info-card">
+      <p>Add whatever you'd like to your cart, then check out — you can pay directly through PayPal or send your cart straight to Discord to open a ticket. Either way, the initial inspection and all proof-of-work happens in DMs.</p>
+    </div>
+  </section>
+
+</div>
+
+<button class="cart-fab" id="cartFab" onclick="toggleCartPanel()">View cart (<span id="cartCountFab">0</span>)</button>
+
+<div class="cart-panel" id="cartPanel">
+  <button class="modal-close" onclick="toggleCartPanel(false)">&times;</button>
+  <h3>Your cart</h3>
+  <div id="cartList"></div>
+  <p class="cart-empty" id="cartEmpty">Your cart is empty — add some services to get started!</p>
+  <div class="cart-total" id="cartTotal"></div>
+  <div class="checkout-actions" id="checkoutActions">
+    <a class="checkout-btn paypal" id="paypalCheckoutBtn" href="#" target="_blank" rel="noopener">Pay with PayPal</a>
+    <button class="checkout-btn discord" id="discordCheckoutBtn">Send cart to Discord</button>
+  </div>
+</div>
+
+<!-- ===================== MODALS ===================== -->
+
+<div class="modal-overlay" id="modalExploration">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalExploration')">&times;</button>
+    <h3>I. Exploration</h3>
+    <div id="explorationBody"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalWorldQuests">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalWorldQuests')">&times;</button>
+    <h3>II. World Quests</h3>
+    <div id="worldQuestsBody"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalArchon">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalArchon')">&times;</button>
+    <h3>III. Archon Quests</h3>
+    <div id="archonBody"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalMaintenance">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalMaintenance')">&times;</button>
+    <h3>IV. Maintenance</h3>
+    <div id="maintenanceBody"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalMisc">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalMisc')">&times;</button>
+    <h3>V. Miscellaneous</h3>
+    <div id="miscBody"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalEvents">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalEvents')">&times;</button>
+    <h3>VI. Events</h3>
+    <div id="eventsBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="social-links">
+    <a href="https://www.instagram.com/pixellepilots/" target="_blank" rel="noopener">Instagram: @pixellepilots</a>
+    <a href="https://www.tiktok.com/@pixellepilots" target="_blank" rel="noopener">TikTok: @pixellepilots</a>
+    <a href="https://www.facebook.com/profile.php?id=61573352883788" target="_blank" rel="noopener">Facebook: Pixelle Pilots</a>
+    <a href="https://discord.gg/ZBAaHmCU6F" target="_blank" rel="noopener">Discord</a>
+    <a href="https://paypal.me/caseydarelle" target="_blank" rel="noopener">PayPal</a>
+  </div>
+  <p class="fine-print">&copy; PixellePilots &middot; Genshin Impact piloting services &middot; prices shown are estimates and may be adjusted after account inspection</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

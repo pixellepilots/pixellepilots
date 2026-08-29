@@ -600,16 +600,9 @@ const EVENTS_DATA = [
     php: 350,
     usd: 5.6,
     eur: 6.5,
-    status: "Not yet live",
-  },
-  {
-    name: "Mutual Aid in Bloom: Into the Frostlands",
-    type: "Minor event",
-    php: 150,
-    usd: 2.8,
-    eur: 2.4,
     status: null,
   },
+
   {
     name: "Trial of the Bastion",
     type: "Minor event",

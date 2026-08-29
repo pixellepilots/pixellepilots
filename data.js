@@ -611,4 +611,13 @@ const EVENTS_DATA = [
     eur: 2.85,
     status: "Not yet live",
   },
+
+
+];
+const REVIEWS_DATA = [
+  {
+    name: "Mr. Cupid",
+    handle: "mistercupid",
+    text: "Great service and fast completion of my order. The process was smooth, professional, and communication was excellent throughout. The commission was completed successfully and exceeded my expectations. Highly recommended to anyone looking for a Genshin Piloting Services.",
+  },
 ];

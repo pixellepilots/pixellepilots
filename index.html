@@ -23,6 +23,7 @@
     <a href="#notes">Important notes</a>
     <a href="#terms">Terms</a>
     <a href="#trust">Trust &amp; safety</a>
+    <a href="#reviews">Reviews</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -200,6 +201,11 @@
   </div>
 </div>
 
+<section id="reviews">
+  <h2 class="section-title">Reviews</h2>
+  <div id="reviewsList"></div>
+</section>
+
 <footer>
   <div class="social-links">
     <a href="https://www.instagram.com/pixellepilots/" target="_blank" rel="noopener">Instagram: @pixellepilots</a>
@@ -213,5 +219,14 @@
 
 <script src="data.js"></script>
 <script src="app.js"></script>
+<script>
+  document.getElementById("reviewsList").innerHTML = REVIEWS_DATA.map(r => `
+    <div class="review-card">
+      <div class="r-name">${r.name}</div>
+      <div class="r-handle">@${r.handle}</div>
+      <div class="r-text">${r.text}</div>
+    </div>
+  `).join("");
+</script>
 </body>
 </html>

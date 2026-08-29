@@ -450,5 +450,4 @@ function unlockAdminPanel() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderCart();
-  renderReviews();
 });

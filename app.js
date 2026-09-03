@@ -4,6 +4,9 @@
    EDIT ME LATER:
    - Discord invite / PayPal.me link: see CONFIG below.
    - All prices live in data.js, not here.
+   - DISCOUNT_RATE below is the Christmas promo (5% off) — applied only to
+     the cart's final total, never to individual item prices. Set it to 0
+     to remove the discount without touching anything else.
    - Reviews are stored in the visitor's own browser only (localStorage) as
      a pending queue until this site gets a real shared backend. See the
      "REVIEWS" section below for details on upgrading this later.
@@ -14,6 +17,8 @@ const CONFIG = {
   paypalMe: "https://paypal.me/caseydarelle",
   reviewApprovalPassword: "pixelle2026", // change this any time - simple local gate for approving reviews
 };
+
+const DISCOUNT_RATE = 0.05; // Christmas promo: 5% off, applied only to the final cart total
 
 let currentCurrency = "PHP";
 let cart = []; // { id, name, sub, php, usd, eur, qty }
@@ -102,8 +107,19 @@ function renderCart() {
     listEl.appendChild(row);
   });
 
-  const totalItem = { php: cartTotalPhp() };
-  totalEl.innerHTML = `<span>Total</span><span>${formatPrice(totalItem, currentCurrency)}</span>`;
+  // Discount is applied only here, to the final cart total — individual
+  // item prices shown above and in every category modal stay unchanged.
+  const originalTotalItem = { php: cartTotalPhp() };
+  const discountedTotalItem = { php: cartTotalPhp() * (1 - DISCOUNT_RATE) };
+  totalEl.innerHTML = `
+    <div style="width:100%;">
+      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--muted);text-decoration:line-through;">
+        <span>Subtotal</span><span>${formatPrice(originalTotalItem, currentCurrency)}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span>Total (5% off)</span><span>${formatPrice(discountedTotalItem, currentCurrency)}</span>
+      </div>
+    </div>`;
 
   const discordMsg = buildCartMessage();
   document.getElementById("discordCheckoutBtn").onclick = () => {
@@ -118,7 +134,10 @@ function buildCartMessage() {
   cart.forEach((c) => {
     msg += `- ${c.name}${c.sub ? " (" + c.sub + ")" : ""}: ${formatPrice(c, currentCurrency)}\n`;
   });
-  msg += `Total: ${formatPrice({ php: cartTotalPhp() }, currentCurrency)}`;
+  const subtotal = { php: cartTotalPhp() };
+  const discounted = { php: cartTotalPhp() * (1 - DISCOUNT_RATE) };
+  msg += `Subtotal: ${formatPrice(subtotal, currentCurrency)}\n`;
+  msg += `Total (5% off applied): ${formatPrice(discounted, currentCurrency)}`;
   return msg;
 }
 
@@ -303,144 +322,30 @@ function renderEventsModal() {
 /* ---------------------------------------------------------------------- */
 /* REVIEWS
    ------------------------------------------------------------------------
-   This is a lightweight placeholder review system that works entirely in
-   each visitor's own browser (localStorage). It lets you test the full
-   flow - submit, hold for approval, approve, display, delete - right now
-   with zero setup.
-
-   IMPORTANT LIMITATION: because it's localStorage, reviews submitted by
-   one visitor are only visible on THAT visitor's device, not to everyone
-   else. To make reviews truly public (one shared, real moderation queue
-   everyone sees), this needs a small real backend - Supabase's free tier
-   is a good fit and Claude can help wire that up when you're ready to take
-   this live for real. Everything else on the site (pricing, cart, PayPal,
-   Discord links) does not need a backend and works as a plain static site
-   right now.
+   Reviews are hardcoded in data.js (REVIEWS_DATA) and rendered directly by
+   the inline script at the bottom of index.html. There is no submit form
+   or backend — this was intentionally simplified since only Pixelle adds
+   reviews, after getting permission from each reviewer over Discord.
    ---------------------------------------------------------------------- */
 
-function loadReviews() {
-  try {
-    return JSON.parse(localStorage.getItem("pp_reviews") || "[]");
-  } catch (e) {
-    return [];
-  }
-}
-function saveReviews(reviews) {
-  localStorage.setItem("pp_reviews", JSON.stringify(reviews));
-}
+/* ---------------------------------------------------------------------- */
+/* Christmas theme: falling snow                                          */
+/* ---------------------------------------------------------------------- */
 
-function submitReview(event) {
-  event.preventDefault();
-  const nameEl = document.getElementById("reviewName");
-  const textEl = document.getElementById("reviewText");
-  const fileEl = document.getElementById("reviewPhoto");
-  const errorEl = document.getElementById("reviewError");
-  errorEl.textContent = "";
-
-  const name = nameEl.value.trim();
-  const text = textEl.value.trim();
-
-  if (!name || !text) {
-    errorEl.textContent = "Please add your name and a short review before submitting.";
-    return;
-  }
-
-  const finish = (photoDataUrl) => {
-    const reviews = loadReviews();
-    reviews.push({
-      id: Date.now(),
-      name,
-      text,
-      photo: photoDataUrl || null,
-      approved: false,
-    });
-    saveReviews(reviews);
-    nameEl.value = "";
-    textEl.value = "";
-    fileEl.value = "";
-    renderReviews();
-    document.getElementById("reviewSubmittedNote").style.display = "block";
-  };
-
-  if (fileEl.files && fileEl.files[0]) {
-    const reader = new FileReader();
-    reader.onload = (e) => finish(e.target.result);
-    reader.readAsDataURL(fileEl.files[0]);
-  } else {
-    finish(null);
-  }
-}
-
-function renderReviews() {
-  const reviews = loadReviews();
-  const approved = reviews.filter((r) => r.approved);
-  const listEl = document.getElementById("reviewsList");
-  listEl.innerHTML =
-    approved.length === 0
-      ? `<p class="subgroup-note">No reviews yet — be the first to leave one below!</p>`
-      : approved
-          .map(
-            (r) => `
-      <div class="review-card">
-        <div class="r-name">${escapeHtml(r.name)}</div>
-        <div>${escapeHtml(r.text)}</div>
-        ${r.photo ? `<img src="${r.photo}" alt="Review photo from ${escapeHtml(r.name)}">` : ""}
-      </div>`
-          )
-          .join("");
-
-  renderPendingAdmin();
-}
-
-function renderPendingAdmin() {
-  const reviews = loadReviews();
-  const pending = reviews.filter((r) => !r.approved);
-  const adminEl = document.getElementById("pendingReviewsAdmin");
-  if (!adminEl) return;
-  if (pending.length === 0) {
-    adminEl.innerHTML = `<p class="subgroup-note">No reviews waiting for approval.</p>`;
-    return;
-  }
-  adminEl.innerHTML = pending
-    .map(
-      (r) => `
-    <div class="review-card">
-      <div class="r-name">${escapeHtml(r.name)}</div>
-      <div>${escapeHtml(r.text)}</div>
-      ${r.photo ? `<img src="${r.photo}" alt="Pending review photo">` : ""}
-      <div style="margin-top:10px;display:flex;gap:10px;">
-        <button class="add-btn" onclick="approveReview(${r.id})">Approve</button>
-        <button class="add-btn" style="background:var(--danger)" onclick="deleteReview(${r.id})">Delete</button>
-      </div>
-    </div>`
-    )
-    .join("");
-}
-
-function approveReview(id) {
-  const reviews = loadReviews();
-  const idx = reviews.findIndex((r) => r.id === id);
-  if (idx !== -1) reviews[idx].approved = true;
-  saveReviews(reviews);
-  renderReviews();
-}
-function deleteReview(id) {
-  let reviews = loadReviews();
-  reviews = reviews.filter((r) => r.id !== id);
-  saveReviews(reviews);
-  renderReviews();
-}
-
-function unlockAdminPanel() {
-  const input = document.getElementById("adminPasswordInput");
-  const panel = document.getElementById("pendingReviewsAdmin");
-  const gate = document.getElementById("adminGate");
-  if (input.value === CONFIG.reviewApprovalPassword) {
-    gate.style.display = "none";
-    panel.style.display = "block";
-    renderPendingAdmin();
-  } else {
-    document.getElementById("adminError").textContent = "Incorrect password.";
+function spawnSnow(count) {
+  const container = document.getElementById("snowfall");
+  if (!container) return;
+  const flakes = ["\u2744", "\u2745", "\u2746"];
+  for (let i = 0; i < count; i++) {
+    const flake = document.createElement("span");
+    flake.className = "snowflake";
+    flake.textContent = flakes[Math.floor(Math.random() * flakes.length)];
+    flake.style.left = Math.random() * 100 + "vw";
+    flake.style.fontSize = (0.7 + Math.random() * 1.3) + "rem";
+    flake.style.animationDuration = (8 + Math.random() * 10) + "s";
+    flake.style.animationDelay = "-" + (Math.random() * 10) + "s";
+    flake.style.setProperty("--drift", (Math.random() * 100 - 50) + "px");
+    container.appendChild(flake);
   }
 }
 
@@ -450,4 +355,5 @@ function unlockAdminPanel() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderCart();
+  spawnSnow(45);
 });

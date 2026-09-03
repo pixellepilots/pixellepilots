@@ -8,9 +8,11 @@
 <link rel="icon" href="logo-transparent.png">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="xmas">
+<div class="snowfall" id="snowfall"></div>
 
 <header class="site-header">
+  <div class="santa-peek" aria-hidden="true">&#127877;</div>
   <div class="header-inner">
     <img src="logo-transparent.png" alt="PixellePilots logo" class="logo-mini">
     <div class="header-title">PixellePilots</div>
@@ -26,6 +28,13 @@
     <a href="#reviews">Reviews</a>
     <a href="#contact">Contact</a>
   </nav>
+  <div class="ornament-row" aria-hidden="true">
+    <span class="ornament" style="--c:#e0544f;"></span>
+    <span class="ornament" style="--c:#e8b23d;"></span>
+    <span class="ornament" style="--c:#7fae7a;"></span>
+    <span class="ornament" style="--c:#e0544f;"></span>
+    <span class="ornament" style="--c:#e8b23d;"></span>
+  </div>
 </header>
 
 <div class="wrap">
@@ -34,6 +43,7 @@
     <img src="logo-transparent.png" alt="PixellePilots" class="hero-logo">
     <p class="tagline">Genshin Impact piloting, done with care</p>
     <p class="stars-row">&#9733; &#9733; &#9733;</p>
+    <div class="discount-banner">&#127876; 5% OFF everything at checkout! &#127876;</div>
   </section>
 
   <div class="currency-bar">
@@ -144,6 +154,7 @@
   <h3>Your cart</h3>
   <div id="cartList"></div>
   <p class="cart-empty" id="cartEmpty">Your cart is empty — add some services to get started!</p>
+  <div class="discount-banner small">&#127876; 5% OFF applied at checkout &#127876;</div>
   <div class="cart-total" id="cartTotal"></div>
   <div class="checkout-actions" id="checkoutActions">
     <a class="checkout-btn paypal" id="paypalCheckoutBtn" href="#" target="_blank" rel="noopener">Pay with PayPal</a>
@@ -217,8 +228,8 @@
   <p class="fine-print">&copy; PixellePilots &middot; Genshin Impact piloting services &middot; prices shown are estimates and may be adjusted after account inspection</p>
 </footer>
 
-<script src="data.js?v=2"></script>
-<script src="app.js?v=2"></script>
+<script src="data.js?v=3"></script>
+<script src="app.js?v=3"></script>
 <script>
   document.getElementById("reviewsList").innerHTML = REVIEWS_DATA.map(r => `
     <div class="review-card">

@@ -12,7 +12,6 @@
 <div class="snowfall" id="snowfall"></div>
 
 <header class="site-header">
-  <div class="santa-peek" aria-hidden="true">&#127877;</div>
   <div class="header-inner">
     <img src="logo-transparent.png" alt="PixellePilots logo" class="logo-mini">
     <div class="header-title">PixellePilots</div>
@@ -44,6 +43,15 @@
     <p class="tagline">Genshin Impact piloting, done with care</p>
     <p class="stars-row">&#9733; &#9733; &#9733;</p>
     <div class="discount-banner">&#127876; 5% OFF everything at checkout! &#127876;</div>
+
+    <div class="promo-card">
+      <p class="promo-title">&#127877; Ber months is here! &#127877;</p>
+      <p class="promo-title">Merry Christmas to all!</p>
+      <p class="promo-text">Pixelle Pilots is offering a <strong>5% discount</strong> for services availed this September.</p>
+      <p class="promo-text">What are you waiting for?</p>
+      <p class="promo-text">Services available from Account Maintenance, Exploration Completion, Character Building, Endgame Completions, and many more!</p>
+      <p class="promo-cta">Interested in availing services? Click on any of the tabs below to know more!</p>
+    </div>
   </section>
 
   <div class="currency-bar">
@@ -55,44 +63,67 @@
 
   <section id="services">
     <h2 class="section-title"><span class="roman">&#8226;</span>Services &amp; pricing</h2>
-    <div class="category-grid">
+    <div class="tabs-wrap">
+      <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" class="santa-peek-tabs" aria-hidden="true">
+        <path d="M40,70 Q30,10 100,5 Q170,10 160,70 Z" fill="#c23b36"/>
+        <ellipse cx="100" cy="68" rx="62" ry="14" fill="#fbeee0"/>
+        <circle cx="38" cy="20" r="12" fill="#fbeee0"/>
+        <ellipse cx="100" cy="85" rx="46" ry="42" fill="#f2c49b"/>
+        <circle cx="72" cy="95" r="9" fill="#e98a72" opacity="0.55"/>
+        <circle cx="128" cy="95" r="9" fill="#e98a72" opacity="0.55"/>
+        <circle cx="80" cy="80" r="4" fill="#2b1a12"/>
+        <circle cx="120" cy="80" r="4" fill="#2b1a12"/>
+        <circle cx="100" cy="95" r="7" fill="#e98a72"/>
+        <path d="M55,100 Q100,140 145,100 Q150,140 100,150 Q50,140 55,100 Z" fill="#fbfbfb"/>
+        <path d="M70,100 Q100,118 130,100 Q120,108 100,108 Q80,108 70,100 Z" fill="#fbfbfb"/>
+        <g fill="#fbfbfb">
+          <rect x="8" y="118" width="34" height="24" rx="12"/>
+          <rect x="158" y="118" width="34" height="24" rx="12"/>
+        </g>
+        <g fill="#f2c49b">
+          <rect x="12" y="128" width="10" height="14" rx="5"/>
+          <rect x="178" y="128" width="10" height="14" rx="5"/>
+        </g>
+      </svg>
+      <div class="category-grid">
 
-      <div class="category-card" onclick="openModal('modalExploration'); renderExplorationModal();">
-        <span class="roman-num">I</span>
-        <h3>Exploration</h3>
-        <p>Region areas, bundles, Frost Moon, oculi &amp; offerings</p>
+        <div class="category-card" onclick="openModal('modalExploration'); renderExplorationModal();">
+          <span class="roman-num">I</span>
+          <h3>Exploration</h3>
+          <p>Region areas, bundles, Frost Moon, oculi &amp; offerings</p>
+        </div>
+
+        <div class="category-card" onclick="openModal('modalWorldQuests'); renderWorldQuestsModal();">
+          <span class="roman-num">II</span>
+          <h3>World Quests</h3>
+          <p>Every region's world quests, story quests &amp; hangouts</p>
+        </div>
+
+        <div class="category-card" onclick="openModal('modalArchon'); renderArchonModal();">
+          <span class="roman-num">III</span>
+          <h3>Archon Quests</h3>
+          <p>Mondstadt through Snezhnaya, act by act</p>
+        </div>
+
+        <div class="category-card" onclick="openModal('modalMaintenance'); renderMaintenanceModal();">
+          <span class="roman-num">IV</span>
+          <h3>Maintenance</h3>
+          <p>Daily, weekly, monthly &amp; patch-cycle care packages</p>
+        </div>
+
+        <div class="category-card" onclick="openModal('modalMisc'); renderMiscModal();">
+          <span class="roman-num">V</span>
+          <h3>Miscellaneous</h3>
+          <p>Primohunt, Spiral Abyss, fishing, materials &amp; more</p>
+        </div>
+
+        <div class="category-card" onclick="openModal('modalEvents'); renderEventsModal();">
+          <span class="roman-num">VI</span>
+          <h3>Events</h3>
+          <p>Current time-limited events</p>
+        </div>
+
       </div>
-
-      <div class="category-card" onclick="openModal('modalWorldQuests'); renderWorldQuestsModal();">
-        <span class="roman-num">II</span>
-        <h3>World Quests</h3>
-        <p>Every region's world quests, story quests &amp; hangouts</p>
-      </div>
-
-      <div class="category-card" onclick="openModal('modalArchon'); renderArchonModal();">
-        <span class="roman-num">III</span>
-        <h3>Archon Quests</h3>
-        <p>Mondstadt through Snezhnaya, act by act</p>
-      </div>
-
-      <div class="category-card" onclick="openModal('modalMaintenance'); renderMaintenanceModal();">
-        <span class="roman-num">IV</span>
-        <h3>Maintenance</h3>
-        <p>Daily, weekly, monthly &amp; patch-cycle care packages</p>
-      </div>
-
-      <div class="category-card" onclick="openModal('modalMisc'); renderMiscModal();">
-        <span class="roman-num">V</span>
-        <h3>Miscellaneous</h3>
-        <p>Primohunt, Spiral Abyss, fishing, materials &amp; more</p>
-      </div>
-
-      <div class="category-card" onclick="openModal('modalEvents'); renderEventsModal();">
-        <span class="roman-num">VI</span>
-        <h3>Events</h3>
-        <p>Current time-limited events</p>
-      </div>
-
     </div>
   </section>
 
@@ -228,8 +259,8 @@
   <p class="fine-print">&copy; PixellePilots &middot; Genshin Impact piloting services &middot; prices shown are estimates and may be adjusted after account inspection</p>
 </footer>
 
-<script src="data.js?v=3"></script>
-<script src="app.js?v=3"></script>
+<script src="data.js?v=4"></script>
+<script src="app.js?v=4"></script>
 <script>
   document.getElementById("reviewsList").innerHTML = REVIEWS_DATA.map(r => `
     <div class="review-card">

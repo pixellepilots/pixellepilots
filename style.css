@@ -39,6 +39,8 @@ a{color:var(--pink);}
   max-width:960px;
   margin:0 auto;
   padding:0 20px;
+  position:relative;
+  z-index:1;
 }
 
 /* ---------- Header ---------- */
@@ -558,6 +560,8 @@ footer .fine-print{
   max-width:960px;
   margin:0 auto;
   padding:0 20px;
+  position:relative;
+  z-index:1;
 }
 
 /* ---------- Christmas theme ---------- */
@@ -574,12 +578,15 @@ body.xmas{
   background:radial-gradient(ellipse at top, #3a171a 0%, #2b0f12 55%);
 }
 
+/* Snow sits behind all real content: fixed to the viewport, negative
+   z-index so it renders behind the (non-positioned) page content, but
+   still above the plain background color/gradient on <body>. */
 .snowfall{
   position:fixed;
   inset:0;
   overflow:hidden;
   pointer-events:none;
-  z-index:3000;
+  z-index:-1;
 }
 .snowflake{
   position:absolute;
@@ -596,23 +603,6 @@ body.xmas{
   0%{ transform:translateY(-10vh) translateX(0) rotate(0deg); opacity:0; }
   10%{ opacity:1; }
   100%{ transform:translateY(110vh) translateX(var(--drift,0)) rotate(360deg); opacity:0.9; }
-}
-
-header.site-header{
-  overflow:hidden;
-}
-.santa-peek{
-  position:absolute;
-  top:-14px;
-  right:60px;
-  font-size:2rem;
-  transform:rotate(8deg);
-  z-index:1;
-  animation:peek 4s ease-in-out infinite;
-}
-@keyframes peek{
-  0%, 100%{ top:-14px; }
-  50%{ top:-4px; }
 }
 
 .ornament-row{
@@ -669,4 +659,57 @@ header.site-header{
 @keyframes pulse{
   0%, 100%{ transform:scale(1); }
   50%{ transform:scale(1.04); }
+}
+
+/* ---------- Promo announcement card ---------- */
+.promo-card{
+  max-width:520px;
+  margin:22px auto 0;
+  padding:22px 26px;
+  background:var(--bg-2);
+  border:2px dashed rgba(232,178,61,0.55);
+  border-radius:var(--radius);
+  text-align:center;
+}
+.promo-title{
+  font-family:var(--font-display);
+  color:var(--pink-text);
+  font-weight:700;
+  font-size:1.08rem;
+  margin:4px 0;
+}
+.promo-text{
+  font-size:0.92rem;
+  margin:10px 0;
+  color:var(--cream);
+  line-height:1.55;
+}
+.promo-cta{
+  font-family:var(--font-display);
+  color:var(--gold);
+  font-weight:700;
+  margin:14px 0 0;
+  font-size:0.98rem;
+}
+
+/* ---------- Santa peeking over the service tabs ---------- */
+.tabs-wrap{
+  position:relative;
+  padding-top:46px;
+}
+.santa-peek-tabs{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:120px;
+  height:auto;
+  transform:translateX(-50%);
+  animation:peekTabs 4s ease-in-out infinite;
+  z-index:2;
+  pointer-events:none;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,0.35));
+}
+@keyframes peekTabs{
+  0%, 100%{ transform:translateX(-50%) translateY(0); }
+  50%{ transform:translateX(-50%) translateY(8px); }
 }

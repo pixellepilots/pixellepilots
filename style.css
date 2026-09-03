@@ -701,7 +701,7 @@ body.xmas{
   position:absolute;
   top:0;
   left:50%;
-  width:120px;
+  width:136px;
   height:auto;
   transform:translateX(-50%);
   animation:peekTabs 4s ease-in-out infinite;

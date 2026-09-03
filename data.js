@@ -624,6 +624,6 @@ const REVIEWS_DATA = [
   {
     name: "Justnothome",
     handle: "v01og",
-    text: "I've been availing Pixelle's services for month now, with big tasks, and small ones, she never failed to complete everything properly and fast! In-fact, she did commisions that would have taken me weeks, in only a few days. She always goes above and beyong, especially with such affordable prices! I really recommend this for anyone wanting their account piloted!",
+    text: "I've been availing Pixelle's services for month now, with big tasks, and small ones, she never failed to complete everything properly and fast! In-fact, she did commisions that would have taken me weeks, in only a few days. She always goes above and beyond, especially with such affordable prices! I really recommend this for anyone wanting their account piloted!",
   },
 ];

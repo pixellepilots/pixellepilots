@@ -609,7 +609,7 @@ const EVENTS_DATA = [
     php: 170,
     usd: 3.3,
     eur: 2.85,
-    status: "Not yet live",
+    status: "nul",
   },
 
 

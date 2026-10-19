@@ -466,6 +466,8 @@ const ARCHON_QUESTS_DATA = [
     acts: [
       { name: "Act I: Everwinter Without Mercy", php: 155, usd: 3, eur: 2.6 },
       { name: "Act II: Wraith's Nocturne", php: 160, usd: 3.2, eur: 2.8 },
+      { name: "Act III: White Night, Like a Dream Upon Waking", php: 230, usd: 4.6, eur: 4 },
+      { name: "Act IV: A Rekviem for the Underworld", php: 290, usd: 5.8, eur: 5 },
     ],
   },
   {
@@ -594,26 +596,36 @@ const MISC_DATA = [
 /* ---------------------------------------------------------------------- */
 
 const EVENTS_DATA = [
+  // 7.1 events. The dates show next to the event type. Set status to null when
+  // an event goes live, and delete the event once it ends.
   {
-    name: "Great Expeditionist Challenge",
-    type: "Major event",
-    php: 350,
-    usd: 5.6,
-    eur: 6.5,
+    name: "Carefree Snowball Fight",
+    type: "Minor event \u2022 Oct 21 \u2013 Nov 2",
+    php: 150,
+    usd: 2.8,
+    eur: 2.4,
     status: null,
   },
 
-  {
-    name: "Trial of the Bastion",
-    type: "Minor event",
-    php: 170,
-    usd: 3.3,
-    eur: 2.85,
-    status: "nul",
-  },
-
-
+  // Ended earlier. Remove the // marks on a block to list it again if needed.
+  // {
+  //   name: "Predictive Victory Dynamics",
+  //   type: "Minor event \u2022 Oct 12 \u2013 20",
+  //   php: 150,
+  //   usd: 2.8,
+  //   eur: 2.4,
+  //   status: null,
+  // },
+  // {
+  //   name: "Silverwing In Pursuit of the Moon",
+  //   type: "Major event \u2022 Sep 24 \u2013 Oct 12",
+  //   php: 400,
+  //   usd: 7.5,
+  //   eur: 6.5,
+  //   status: null,
+  // },
 ];
+
 const REVIEWS_DATA = [
   {
     name: "Mr. Cupid",
@@ -627,7 +639,7 @@ const REVIEWS_DATA = [
     text: "I've been availing Pixelle's services for month now, with big tasks, and small ones, she never failed to complete everything properly and fast! In-fact, she did commisions that would have taken me weeks, in only a few days. She always goes above and beyond, especially with such affordable prices! I really recommend this for anyone wanting their account piloted!",
   },
 
-   {
+  {
     name: "vee",
     handle: "veemoxd",
     text: "great as always ~~ always going above and beyond!! thank you so much",

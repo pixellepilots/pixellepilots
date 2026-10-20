@@ -4,12 +4,7 @@
    EDIT ME LATER:
    - Discord invite / PayPal.me link: see CONFIG below.
    - All prices live in data.js, not here.
-   - DISCOUNT_RATE below is the Christmas promo (5% off) — applied only to
-     the cart's final total, never to individual item prices. Set it to 0
-     to remove the discount without touching anything else.
-   - Reviews are stored in the visitor's own browser only (localStorage) as
-     a pending queue until this site gets a real shared backend. See the
-     "REVIEWS" section below for details on upgrading this later.
+   - Reviews are hardcoded in data.js (REVIEWS_DATA), not stored here.
    ========================================================================== */
 
 const CONFIG = {
@@ -17,8 +12,6 @@ const CONFIG = {
   paypalMe: "https://paypal.me/caseydarelle",
   reviewApprovalPassword: "pixelle2026", // change this any time - simple local gate for approving reviews
 };
-
-const DISCOUNT_RATE = 0.05; // Christmas promo: 5% off, applied only to the final cart total
 
 let currentCurrency = "PHP";
 let cart = []; // { id, name, sub, php, usd, eur, qty }
@@ -107,19 +100,8 @@ function renderCart() {
     listEl.appendChild(row);
   });
 
-  // Discount is applied only here, to the final cart total — individual
-  // item prices shown above and in every category modal stay unchanged.
-  const originalTotalItem = { php: cartTotalPhp() };
-  const discountedTotalItem = { php: cartTotalPhp() * (1 - DISCOUNT_RATE) };
-  totalEl.innerHTML = `
-    <div style="width:100%;">
-      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--muted);text-decoration:line-through;">
-        <span>Subtotal</span><span>${formatPrice(originalTotalItem, currentCurrency)}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;">
-        <span>Total (5% off)</span><span>${formatPrice(discountedTotalItem, currentCurrency)}</span>
-      </div>
-    </div>`;
+  const totalItem = { php: cartTotalPhp() };
+  totalEl.innerHTML = `<span>Total</span><span>${formatPrice(totalItem, currentCurrency)}</span>`;
 
   const discordMsg = buildCartMessage();
   document.getElementById("discordCheckoutBtn").onclick = () => {
@@ -134,10 +116,7 @@ function buildCartMessage() {
   cart.forEach((c) => {
     msg += `- ${c.name}${c.sub ? " (" + c.sub + ")" : ""}: ${formatPrice(c, currentCurrency)}\n`;
   });
-  const subtotal = { php: cartTotalPhp() };
-  const discounted = { php: cartTotalPhp() * (1 - DISCOUNT_RATE) };
-  msg += `Subtotal: ${formatPrice(subtotal, currentCurrency)}\n`;
-  msg += `Total (5% off applied): ${formatPrice(discounted, currentCurrency)}`;
+  msg += `Total: ${formatPrice({ php: cartTotalPhp() }, currentCurrency)}`;
   return msg;
 }
 
